@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+- [修复] 完整分析报告抽屉中 Markdown 表格单元格不再强制不换行，长文本自动折行，超宽表格保留横向滚动。
+
 - [修复] 实时行情基准仅接受同交易日的有效日期；Yahoo 行情使用未复权价格并区分交易日与更新时间，避免除息日涨跌方向错误及误报过期。
 
 - [修复] 盘中及盘后实时行情覆盖前，仅在报价有明确行情交易日证据时将历史 `today` 平移为 `yesterday`；缺少行情时间的港股缓存报价保留原基准，避免涨跌幅、成交量比率及行情快照涨跌额被错误重算（#2517）。
@@ -30,9 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - [文档] 恢复 README、部署指南及模型/搜索配置表中的 Anspire 可点击链接并保留推广码，继续作为 SerpAPI 后的可选搜索服务。
 
 - [改进] 下线 Anspire 合作宣传及专属额度说明，移除 README 推荐入口，调整配置示例和渠道展示顺序；新闻搜索顺序调整至 SerpAPI 之后，保留原推广码链接、已有 Key 和模型渠道兼容。
-- [新功能] 台股大盘复盘支持 `tw` 与组合市场：复用加权/柜买指数和新闻，覆盖 API/Web、交易日过滤、历史/通知与分享图片；明确披露缺失指数，不提供市场宽度或 Market Light。`both` 扩为六市场，保留旧五市场可配置 `cn,hk,us,jp,kr`（#2482）。
-
-- [修复] 大盘分享图片保留所有“数据边界”章节的限制项并去重，避免已有章节或超过两项时漏掉台股缺失指数提示；兼容结构化载荷、历史 Markdown 和多市场图片（#2489）。
 
 - [修复] Agent 工具消息内容与工具调用参数序列化不再透传 NaN/±Infinity：`LLMToolAdapter._convert_messages` 序列化前将非有限浮点递归归一化为 `null`，并以 `allow_nan=False` 输出严格 RFC 8259 JSON，避免 LiteLLM 以 `"NaN" is not valid JSON` 拒绝请求（#2471）。
 
